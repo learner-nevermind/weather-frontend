@@ -33,7 +33,7 @@ function Profile() {
       .profile({ username, latitude, longitude }, token)
       .then((resp) => {
         if (resp.data.success) {
-          localStorage.setItem("userInfo", JSON.stringfy(resp.data.userInfo));
+          localStorage.setItem("userInfo", JSON.stringify(resp.data.userInfo));
           alert("Updated successfully");
         } else alert(resp.data.message);
       })

@@ -13,7 +13,7 @@ function SignIn() {
   const onSignIn = () => {
     if (!username) return alert("Type your username");
     if (!password) return alert("Type your password");
-    api.user
+    api.auth
       .signIn({
         username,
         password,

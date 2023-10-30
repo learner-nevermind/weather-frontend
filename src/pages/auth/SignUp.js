@@ -26,7 +26,7 @@ function SignUp() {
     if (latitude < -180 || latitude > 180) return alert("Invalid latitude");
     if (longitude < -180 || longitude > 180) return alert("Invalid longitude");
 
-    api.user
+    api.auth
       .signUp({
         username,
         password,

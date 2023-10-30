@@ -1,7 +1,7 @@
 import classNames from "classnames";
 
 function Button(props) {
-  const { variant = "info", text, onClick } = props;
+  const { variant, text, onClick, ...rest } = props;
 
   return (
     <button
@@ -13,6 +13,7 @@ function Button(props) {
         variant === "warning" ? "bg-yellow-500 active:bg-yellow-600" : "",
       )}
       onClick={onClick}
+      {...rest}
     >
       {text}
     </button>

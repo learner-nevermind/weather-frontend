@@ -31,7 +31,8 @@ function SignIn() {
 
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      <div className="w-[400px] flex flex-col gap-3">
+      <div className="w-[480px] border border-neutral-400 rounded-xl flex flex-col gap-4 px-8 py-16">
+        <div className="w-full text-center text-2xl mb-8">Sing In</div>
         <Input
           placeholder="Type your username here"
           value={username}

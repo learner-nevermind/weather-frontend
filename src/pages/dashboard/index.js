@@ -34,28 +34,20 @@ function Dashboard() {
             <div>
               Hello, <span className="font-bold">{userInfo?.username}!</span>
             </div>
-            <div>Today's weather</div>
+            <div>Today&apos;s weather</div>
           </div>
           {weather ? (
             <>
               <div className="w-full flex items-center justify-between">
                 <div className="flex flex-col gap-2">
-                  <div className="text-2xl">
-                    {weather.Temperature.Metric.Value}°C
-                  </div>
+                  <div className="text-2xl">{weather.Temperature.Metric.Value}°C</div>
                   <div className="text-md">{weather.WeatherText}</div>
                 </div>
                 <div>
-                  <img
-                    className="w-full h-16"
-                    src={`img/weathers/${weather.WeatherIcon}.png`}
-                    alt="weather icon"
-                  />
+                  <img className="w-full h-16" src={`img/weathers/${weather.WeatherIcon}.png`} alt="weather icon" />
                 </div>
               </div>
-              <div className="w-full text-center text-4xl font-semibold">
-                {location.EnglishName}
-              </div>
+              <div className="w-full text-center text-4xl font-semibold">{location.EnglishName}</div>
               <div>Weather Info</div>
               <div className="flex flex-col">
                 <div className="flex gap-4">

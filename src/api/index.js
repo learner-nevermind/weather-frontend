@@ -24,7 +24,7 @@ const weather = {
     axios.get(`${weatherURL}/currentconditions/v1/${params.key}`, {
       params: {
         apikey: weatherAPIKey,
-        details: true
+        details: true,
       },
     }),
 };

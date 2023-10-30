@@ -69,11 +69,7 @@ function SignUp() {
           onChange={(e) => setLongitude(e.currentTarget.value)}
         />
         <Button text="Sign up" variant="info" onClick={onSignUp} />
-        <Button
-          text="Back to Sign In"
-          variant="success"
-          onClick={onBackToSignIn}
-        />
+        <Button text="Back to Sign In" variant="success" onClick={onBackToSignIn} />
       </div>
     </div>
   );

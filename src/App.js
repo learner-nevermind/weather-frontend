@@ -20,8 +20,8 @@ const router = createBrowserRouter([
   },
   {
     path: appRoutes.profile,
-    element: <Profile />
-  }
+    element: <Profile />,
+  },
 ]);
 
 function App() {

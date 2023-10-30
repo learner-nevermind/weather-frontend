@@ -23,6 +23,8 @@ function SignUp() {
     if (password !== confirmPassword) return alert("Password mismatch.");
     if (!latitude) return alert("Type latitude");
     if (!longitude) return alert("Type longitude");
+    if (latitude < -180 || latitude > 180) return alert("Invalid latitude");
+    if (longitude < -180 || longitude > 180) return alert("Invalid longitude");
 
     api.user
       .signUp({
@@ -31,15 +33,21 @@ function SignUp() {
         latitude,
         longitude,
       })
-      .then(() => {
-        alert("User registered successfully");
+      .then((resp) => {
+        if (resp.data.success) alert("User registered successfully");
+        else alert(resp.data.message);
+      })
+      .catch((err) => {
+        if (err.message) alert(err.message);
+        else alert("Something went wrong");
+        console.log(err);
       });
   };
 
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      <div className="w-[480px] border border-neutral-400 rounded-xl flex flex-col gap-4 px-8 py-16">
-        <div className="w-full text-center text-2xl mb-8">Sing Up</div>
+      <div className="w-[480px] border border-neutral-400 rounded-xl flex flex-col gap-8 p-8">
+        <div className="w-full text-center text-2xl mb-8">Sign Up</div>
         <Input
           placeholder="Type your username here"
           value={username}
@@ -57,20 +65,28 @@ function SignUp() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.currentTarget.value)}
         />
-        <Input
-          placeholder="Type latitude of your location"
-          type="number"
-          value={latitude}
-          onChange={(e) => setLatitute(e.currentTarget.value)}
-        />
-        <Input
-          placeholder="Type longtitude of your location"
-          type="number"
-          value={longitude}
-          onChange={(e) => setLongitude(e.currentTarget.value)}
-        />
+        <div className="w-full items-center justify-between flex flex-row gap-4">
+          <Input
+            placeholder="Type latitude of your location"
+            type="number"
+            min="-180"
+            max="180"
+            value={latitude}
+            onChange={(e) => setLatitute(e.currentTarget.value)}
+          />
+          <Input
+            placeholder="Type longtitude of your location"
+            type="number"
+            min="-180"
+            max="180"
+            value={longitude}
+            onChange={(e) => setLongitude(e.currentTarget.value)}
+          />
+        </div>
         <Button text="Sign up" variant="info" onClick={onSignUp} />
-        <Button text="Back to Sign In" variant="success" onClick={onBackToSignIn} />
+        <div className="w-full text-center text-sky-600 cursor-pointer hover:text-sky-300" onClick={onBackToSignIn}>
+          Already have an account?
+        </div>
       </div>
     </div>
   );

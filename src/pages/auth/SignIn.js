@@ -11,6 +11,8 @@ function SignIn() {
   const [password, setPassword] = useState("");
 
   const onSignIn = () => {
+    if (!username) return alert("Type your username");
+    if (!password) return alert("Type your password");
     api.user
       .signIn({
         username,
@@ -21,7 +23,12 @@ function SignIn() {
           localStorage.setItem("token", JSON.stringify(res.data.token));
           localStorage.setItem("userInfo", JSON.stringify(res.data.userInfo));
           navigate(appRoutes.dashboard);
-        }
+        } else alert(res.data.message);
+      })
+      .catch((err) => {
+        if (err.message) alert(err.message);
+        else alert("Something went wrong");
+        console.log(err);
       });
   };
 
@@ -31,8 +38,8 @@ function SignIn() {
 
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      <div className="w-[480px] border border-neutral-400 rounded-xl flex flex-col gap-4 px-8 py-16">
-        <div className="w-full text-center text-2xl mb-8">Sing In</div>
+      <div className="w-[480px] border border-neutral-400 rounded-xl flex flex-col gap-8 p-8">
+        <div className="w-full text-center text-2xl my-4">Sign in to your account</div>
         <Input
           placeholder="Type your username here"
           value={username}
@@ -49,7 +56,9 @@ function SignIn() {
           }}
         />
         <Button text="Sign in" variant="info" onClick={onSignIn} />
-        <Button text="Go to Sign up" variant="success" onClick={onSignUp} />
+        <div className="w-full text-center text-sky-600 cursor-pointer hover:text-sky-300" onClick={onSignUp}>
+          You don&apos;t have an account?
+        </div>
       </div>
     </div>
   );
